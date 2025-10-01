@@ -47,17 +47,27 @@ class Role(models.Model):
         return RoleEntity(
             id=self.id,
             name=self.name,
-            description=self.description
+            description=self.description,
+            created_at=self.created_at,
+            updated_at=self.updated_at
         )
     
     @classmethod
     def from_domain_entity(cls, role_entity: RoleEntity) -> 'Role':
         """Crea desde entidad de dominio"""
-        return cls(
-            id=role_entity.id,
-            name=role_entity.name,
-            description=role_entity.description
-        )
+        # Solo asignar el ID si no es None (para actualizaciones)
+        if role_entity.id is not None:
+            return cls(
+                id=role_entity.id,
+                name=role_entity.name,
+                description=role_entity.description
+            )
+        else:
+            # Para nuevas entidades, no asignar ID (Django lo generará automáticamente)
+            return cls(
+                name=role_entity.name,
+                description=role_entity.description
+            )
 
 class User(models.Model):
     """Modelo Django para User"""

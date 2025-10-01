@@ -9,8 +9,8 @@ class Role:
     id: Optional[int] = None
     name: str = ""
     description: str = ""
-    created_at: datetime = datetime.now()
-    updated_at: datetime = datetime.now()
+    created_at: Optional[datetime] = None
+    updated_at: Optional[datetime] = None
     
     def __post_init__(self):
         """Validaciones básicas de dominio"""

@@ -19,6 +19,8 @@ from .saving_box_transaction_view import SavingBoxTransactionView
 from .amount_box_box_transaction_view import AmountBoxBoxTransactionView
 from .amount_box_view import AmountBoxView
 from .box_transaction_view import BoxTransactionView
+from .role_view import RoleView
+from .health_check_view import HealthCheckView
 urlpatterns = [
     # Rutas de usuarios
     path('users/register', UserRegistrationView.as_view(), name='user-register'),
@@ -49,4 +51,10 @@ urlpatterns = [
 
     # Rutas de transacciones de cajas
     path('boxes/<int:box_id>/transactions/make', BoxTransactionView.as_view(), name='box-transactions-view'),
+
+    # Rutas de roles
+    path('roles', RoleView.as_view(), name='roles'),
+
+    # Rutas de salud
+    path('health-check', HealthCheckView.as_view(), name='health-check'),
 ]

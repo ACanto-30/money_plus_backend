@@ -16,6 +16,6 @@ class IRoleRepository(ABC):
         pass
     
     @abstractmethod
-    def add(self, role: Role) -> None:
-        """Agrega un rol al repositorio"""
+    def add(self, role: Role) -> Role:
+        """Agrega un rol al repositorio y retorna la entidad con ID asignado"""
         pass 

@@ -22,9 +22,14 @@ class RoleRepository(IRoleRepository):
         except Role.DoesNotExist:
             return None
     
-    def add(self, role: RoleEntity) -> None:
-        """Agrega un rol al repositorio"""
+    def add(self, role: RoleEntity) -> RoleEntity:
+        """Agrega un rol al repositorio y retorna la entidad con ID asignado"""
         role_model = Role.from_domain_entity(role)
         role_model.save()
-        # Actualizar el ID en la entidad
+        
+        # Actualizar la entidad con los datos de la base de datos
         role.id = role_model.id
+        role.created_at = role_model.created_at
+        role.updated_at = role_model.updated_at
+        
+        return role
